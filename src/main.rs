@@ -15,6 +15,8 @@ fn main() {
     println!("\n---- Running exercises from arrays module ---");
     arrays::exercise_four();
     arrays::demo_pockets_and_rocks();
+    arrays::exercise_six();
+    arrays::exercise_six_refactored();
 
     println!("\n---- Running exercises from string module ---");
     strings::exercise_five();
