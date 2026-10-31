@@ -63,23 +63,15 @@ pub fn exercise_six() {
 // Challenge 1: Refactored and updated
 
 fn select_action() -> (usize, u32) {
-    let current_hour = Local::now().hour();
-    if current_hour == 0 {
-        (2, 3)
-    } else if current_hour < 12 {
-        (0, 1)
-    } else {
-        (1, 2)
+    match Local::now().hour() {
+        0 => (2, 3),
+        1..=11 => (0, 1),
+        _ => (1, 2)
     }
-
 }
 
 fn define_article(action: &str) -> &str {
-    if action.starts_with('a') {
-        "an"
-    } else {
-        "a"
-    }
+    if action.starts_with(['a', 'e', 'i', 'o', 'u']) { "an" } else { "a" }
 }
 
 fn stash_trinket<'a>(trinket: &'a str, collection: &mut Vec<&'a str>){
@@ -87,7 +79,7 @@ fn stash_trinket<'a>(trinket: &'a str, collection: &mut Vec<&'a str>){
     println!("Corvid picks up and stashes {}", trinket);
 }
 
-fn admire(name: &str, collection: Vec<&str>){
+fn admire(name: &str, collection: &[&str]){
     for item in collection.iter() {
     println!("{name} admires the {item}");
     };
@@ -113,5 +105,5 @@ pub fn exercise_six_refactored() {
     stash_trinket("stolen tin foil hat", &mut corvids_collection);
 
     //call helper function to observe behaviour
-    admire("Corvid", corvids_collection);
+    admire("Corvid", &corvids_collection);
 }
